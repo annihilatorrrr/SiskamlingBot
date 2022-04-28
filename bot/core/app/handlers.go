@@ -18,7 +18,7 @@ import (
  * Group 0: command messages
  */
 
-func (b *MyApp) captionCmdHandler(_ *gotgbot.Bot, ctx *ext.Context) error {
+func (*MyApp) captionCmdHandler(_ *gotgbot.Bot, ctx *ext.Context) error {
 	ctx.Message.Text = ctx.Message.Caption
 	return ext.ContinueGroups
 }
@@ -68,7 +68,7 @@ func (b *MyApp) messageHandler(bot *gotgbot.Bot, ctx *ext.Context) (ret error) {
 			}
 
 			if messages.Filter(ctx.Message) {
-				if messages.Async == true {
+				if messages.Async {
 					wg.Add(1)
 					go messages.InvokeAsync(&wg, bot, ctx)
 				} else {

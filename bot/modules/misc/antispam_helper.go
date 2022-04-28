@@ -2,17 +2,17 @@ package user
 
 import (
 	"SiskamlingBot/bot/models"
+	"SiskamlingBot/bot/utils"
 	"encoding/json"
-	"go.mongodb.org/mongo-driver/mongo"
 	"io"
 	"log"
 	"net/http"
 	"os"
 	"time"
 
-	"github.com/soekarnohatta/go-spamwatch/spamwatch"
+	"go.mongodb.org/mongo-driver/mongo"
 
-	"SiskamlingBot/bot/utils"
+	"github.com/soekarnohatta/go-spamwatch/spamwatch"
 )
 
 var (
@@ -68,7 +68,7 @@ func isSwBan(userId int64) bool {
 }
 
 func isLocalBan(db *mongo.Database, userId int64) bool {
-	return (models.GetUserByID(db, userId) != nil) && (models.GetUserByID(db, userId).Gban == true)
+	return (models.GetUserByID(db, userId) != nil) && (models.GetUserByID(db, userId).Gban)
 }
 
 func IsBan(db *mongo.Database, userId int64) bool {

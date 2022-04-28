@@ -15,7 +15,7 @@ type Picture struct {
 	IsMuted bool  `json:"is_muted" bson:"is_muted"`
 }
 
-func NewPicture(userID int64, chatID int64, isMuted bool) *Picture {
+func NewPicture(userID, chatID int64, isMuted bool) *Picture {
 	return &Picture{
 		UserID:  userID,
 		ChatID:  chatID,
@@ -42,7 +42,6 @@ func SavePicture(db *mongo.Database, picture *Picture) {
 	if err != nil {
 		log.Print(err.Error())
 	}
-	return
 }
 
 func DeletePictureByID(db *mongo.Database, Id int64) {
@@ -50,5 +49,4 @@ func DeletePictureByID(db *mongo.Database, Id int64) {
 	if err != nil {
 		log.Print(err.Error())
 	}
-	return
 }

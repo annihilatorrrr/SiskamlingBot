@@ -3,7 +3,7 @@ package admin
 import (
 	"SiskamlingBot/bot/core/telegram"
 	"SiskamlingBot/bot/models"
-	"SiskamlingBot/bot/modules/misc"
+	user "SiskamlingBot/bot/modules/misc"
 	"SiskamlingBot/bot/utils"
 	"encoding/json"
 	"fmt"
@@ -35,7 +35,6 @@ func (m Module) getUser(ctx *telegram.TgContext) {
 	}
 
 	ctx.ReplyMessage("Pengguna tidak ditemukan!")
-	return
 }
 
 func (m Module) getChat(ctx *telegram.TgContext) {
@@ -49,10 +48,9 @@ func (m Module) getChat(ctx *telegram.TgContext) {
 	}
 
 	ctx.ReplyMessage("Obrolan tidak ditemukan!")
-	return
 }
 
-func (m Module) debug(ctx *telegram.TgContext) {
+func (Module) debug(ctx *telegram.TgContext) {
 	if ctx.Message.ReplyToMessage != nil {
 		output, _ := json.MarshalIndent(ctx.Message.ReplyToMessage, "", "  ")
 		ctx.ReplyMessage(string(output))
@@ -61,5 +59,4 @@ func (m Module) debug(ctx *telegram.TgContext) {
 
 	output, _ := json.MarshalIndent(ctx.Message, "", "  ")
 	ctx.ReplyMessage(string(output))
-	return
 }

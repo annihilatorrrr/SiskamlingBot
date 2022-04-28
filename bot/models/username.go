@@ -15,7 +15,7 @@ type Username struct {
 	IsMuted bool  `json:"is_muted" bson:"is_muted"`
 }
 
-func NewUsername(userID int64, chatID int64, isMuted bool) *Username {
+func NewUsername(userID, chatID int64, isMuted bool) *Username {
 	return &Username{
 		UserID:  userID,
 		ChatID:  chatID,
@@ -42,7 +42,6 @@ func SaveUsername(db *mongo.Database, username *Username) {
 	if err != nil {
 		log.Print(err.Error())
 	}
-	return
 }
 
 func DeleteUsernameByID(db *mongo.Database, Id int64) {
@@ -50,5 +49,4 @@ func DeleteUsernameByID(db *mongo.Database, Id int64) {
 	if err != nil {
 		log.Print(err.Error())
 	}
-	return
 }

@@ -17,7 +17,7 @@ type User struct {
 	UserName  string `json:"user_username" bson:"user_username" `
 }
 
-func NewUser(userID int64, firstName string, lastName string, userName string, gban bool) *User {
+func NewUser(userID int64, firstName, lastName, userName string, gban bool) *User {
 	return &User{
 		UserID:    userID,
 		Gban:      gban,
@@ -46,7 +46,6 @@ func SaveUser(db *mongo.Database, user *User) {
 	if err != nil {
 		log.Print(err.Error())
 	}
-	return
 }
 
 func DeleteUserByID(db *mongo.Database, Id int64) {
@@ -54,5 +53,4 @@ func DeleteUserByID(db *mongo.Database, Id int64) {
 	if err != nil {
 		log.Print(err.Error())
 	}
-	return
 }
